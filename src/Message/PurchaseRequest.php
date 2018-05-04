@@ -20,9 +20,6 @@ class PurchaseRequest extends AuthorizeRequest
         $data                   = parent::getData();
         $data['request_action'] = 'CCAUTHCAP';
 
-        echo "getData PurchaseRequest \r\n";
-        print_r($data);
-
         return $data;
     }
 }
