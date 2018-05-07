@@ -56,37 +56,50 @@ class Response extends AbstractResponse
         return isset($this->data['TRANS_STATUS_NAME']) ? $this->data['TRANS_STATUS_NAME'] : null;
     }
 
+    /**
+     * @return null|string
+     */
     public function getMessage()
     {
-        if (!empty($this->data['SERVICE_ADVICE'])) {
+        // InovioPay returns advices with empty spaces, so use trim()
+        if (!empty($this->data['SERVICE_ADVICE']) && trim($this->data['SERVICE_ADVICE'])) {
             return $this->data['SERVICE_ADVICE'];
         }
 
-        if (!empty($this->data['API_ADVICE'])) {
+        if (!empty($this->data['API_ADVICE']) && trim($this->data['API_ADVICE'])) {
             return $this->data['API_ADVICE'];
         }
 
-        if (!empty($this->data['PROCESSOR_ADVICE'])) {
+        if (!empty($this->data['PROCESSOR_ADVICE']) && trim($this->data['PROCESSOR_ADVICE'])) {
             return $this->data['PROCESSOR_ADVICE'];
         }
 
-        if (!empty($this->data['INDUSTRY_ADVICE'])) {
+        if (!empty($this->data['INDUSTRY_ADVICE']) && trim($this->data['INDUSTRY_ADVICE'])) {
             return $this->data['INDUSTRY_ADVICE'];
         }
 
         return null;
     }
 
+    /**
+     * @return null|string
+     */
     public function getTransactionReference()
     {
         return !empty($this->data['PO_ID']) ? $this->data['PO_ID'] : null;
     }
 
+    /**
+     * @return null
+     */
     public function getCustomerReference()
     {
         return !empty($this->data['CUST_ID']) ? $this->data['CUST_ID'] : null;
     }
 
+    /**
+     * @return null
+     */
     public function getCardReference()
     {
         return !empty($this->data['PMT_ID']) ? $this->data['PMT_ID'] : null;
