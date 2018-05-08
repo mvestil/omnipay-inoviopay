@@ -168,6 +168,23 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
+     * @return mixed
+     */
+    public function getTransactorId()
+    {
+        return $this->getParameter('transactorId');
+    }
+
+    /**
+     * @param $value
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setTransactorId($value)
+    {
+        return $this->setParameter('transactorId', $value);
+    }
+
+    /**
      * @return array
      */
     public function getHeaders()
