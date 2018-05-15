@@ -14,27 +14,6 @@ namespace Omnipay\InovioPay\Message;
 class AuthorizeRequest extends AbstractRequest
 {
     /**
-     * Get the flag for determining if the request is a Renewal / Rebill
-     *
-     * @return string
-     */
-    public function getSubscription()
-    {
-        return $this->getParameter('subscription');
-    }
-
-    /**
-     * Set the flag for determining if the request is a Renewal / Rebill
-     *
-     * @param $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setSubscription($value)
-    {
-        return $this->setParameter('subscription', $value);
-    }
-
-    /**
      * TODO : Support for multiple products. As of the moment, all payments are assumed to have one product id assigned to li_prod_id_1 param
      *
      * @return array
@@ -58,11 +37,6 @@ class AuthorizeRequest extends AbstractRequest
 
         if ($this->getTransactorId()) {
             $data['xtl_cust_id']  = $this->getTransactorId();
-        }
-
-        // 1 for Renewal / Rebill
-        if ($this->getSubscription()) {
-            $data['request_rebill'] = $this->getSubscription();
         }
 
         if ($this->getCardReference()) {
