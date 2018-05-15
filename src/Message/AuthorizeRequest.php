@@ -5,6 +5,8 @@ namespace Omnipay\InovioPay\Message;
 /**
  * Class AuthorizeRequest
  *
+ * This is the parent class of Card payment and Token payment (Purchase Request)
+ *
  * @date      3/5/18
  * @author    markbonnievestil
  * @copyright Copyright (c) Infostream Group

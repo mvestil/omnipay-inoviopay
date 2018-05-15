@@ -5,6 +5,8 @@ namespace Omnipay\InovioPay\Message;
 /**
  * Class AbstractRequest
  *
+ * This is the parent class of all InovioPay requests
+ *
  * @date      3/5/18
  * @author    markbonnievestil
  */
@@ -17,6 +19,11 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * @var string URL
      */
     protected $endpoint = 'https://api.inoviopay.com/payment/pmt_service.cfm';
+
+    /**
+     * @var float
+     */
+    protected $apiVersion = 3.9;
 
     /**
      * @return string
@@ -33,6 +40,24 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function setEndpoint($endpoint)
     {
         $this->endpoint = $endpoint;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getApiVersion()
+    {
+        return $this->apiVersion;
+    }
+
+    /**
+     * @param float $apiVersion
+     * @return AbstractRequest
+     */
+    public function setApiVersion($apiVersion)
+    {
+        $this->apiVersion = $apiVersion;
         return $this;
     }
 
@@ -260,7 +285,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             'site_id'                 => $this->getSiteId(),
             'merch_acct_id'           => $this->getMerchAcctId(),
             'request_response_format' => $this->getRequestResponseFormat() ? $this->getRequestResponseFormat() : 'json',
-            'request_api_version'     => 3.9,
+            'request_api_version'     => $this->getApiVersion(),
         );
 
         return $data;

@@ -8,12 +8,75 @@ namespace Omnipay\InovioPay;
 use Omnipay\Common\AbstractGateway;
 
 /**
- * Class Gateway
+ * InovioPay Gateway
+ *
+ * Inovio is the revolutionary new payments gateway with seamless integration and global scalability that continuously evolves with the industry.
+ *
+ * ### Example
+ * <code>
+ * // Initialize the gateway
+ * $gateway = Omnipay::create('InovioPay');
+ * $gateway->initialize(array(
+ *     'reqUsername' => 'XXXXXXXXXXXX',
+ *     'reqPassword' => 'XXXXXXXXXXXX',
+ *     'siteId'      => '64557',
+ *     'merchAcctId' => '66824',
+ *     'testMode'    => true,
+ *     'productId'   => 85299,
+ * ));
+ *
+ * // Create a credit card object
+ * $card = new CreditCard(array(
+ *     'firstName'       => 'Example',
+ *     'lastName'        => 'Customer',
+ *     'number'          => '4242424242424242',
+ *     'expiryMonth'     => '01',
+ *     'expiryYear'      => '2032',
+ *     'cvv'             => '123',
+ *     'email'           => 'customer@example.com',
+ *     'billingAddress1' => 'Mary',
+ *     'billingCountry'  => 'SG',
+ *     'billingCity'     => 'Singapore',
+ *     'billingPostcode' => '567278',
+ *     'billingState'    => 'Singapore',
+ * ));
+ *
+ * // Do a purchase transaction on the gateway
+ * $transaction = $gateway->purchase(array(
+ *     'amount'      => '50.00',
+ *     'currency'    => 'USD',
+ *     'card'        => $card,
+ *     'transactionId' => random_int(0, 1000000000),
+ * ));
+ *
+ * $response = $transaction->send();
+ * if ($response->isSuccessful()) {
+ *     echo "Purchase transaction was successful!\n";
+ *     $sale_id = $response->getTransactionReference();
+ *     echo "Transaction reference = " . $sale_id . "\n";
+ * }
+ * </code>
+ *
+ * ### Quirks
+ *
+ * Card and Token payment is supported. In order to create a token payment, customer id (cust_id) and payment id (pmt_id) must be passed.
+ * You can get these values from the response of the first purchase using Card payment.
+ * This package supports only single item purchase and multiple items will only be supported in the future release.
+ * For this package to work, you must pass the API credentials as part of the request body including the Product Id (li_prod_id_1) which can be created
+ * in InovioPay portal by creating product with type "Variable Price Product"
+ *
+ * ### Test modes
+ *
+ * The API has only one endpoint which is https://api.inoviopay.com/payment/pmt_service.cfm
+ *
+ * ### Authentication
+ *
+ * To call InovioPay Payments API, reqUsername, reqPassword, siteId, merchAcctId must be passed.
+ * This can be seen in InovioPay admin portal.
  *
  * @date      30/4/18
  * @author    markbonnievestil
  */
-
 class Gateway extends AbstractGateway
 {
     /**
