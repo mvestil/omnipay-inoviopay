@@ -1,0 +1,27 @@
+{
+  "name": "mvestil/omnipay-inoviopay",
+  "type": "library",
+  "description": "InovioPay driver for the Omnipay payment processing library",
+  "keywords": [
+    "gateway",
+    "merchant",
+    "omnipay",
+    "pay",
+    "payment",
+    "inoviopay"
+  ],
+  "homepage": "https://github.com/mvestil/omnipay-inoviopay",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mark Bonnie Vestil",
+      "email": "mbvestil@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": { "Omnipay\\InovioPay\\" : "src/" }
+  },
+  "require": {
+    "omnipay/common": "~2.0"
+  }
+}
