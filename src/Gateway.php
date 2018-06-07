@@ -202,6 +202,17 @@ class Gateway extends AbstractGateway
     }
 
     /**
+     * Create a purchase request.
+     *
+     * @param array $parameters
+     * @return \Omnipay\InovioPay\Message\PurchaseRequest
+     */
+    public function completePurchase(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\InovioPay\Message\CompletePurchaseRequest', $parameters);
+    }
+
+    /**
      * Create a refund request.
      *
      * @param array $parameters
