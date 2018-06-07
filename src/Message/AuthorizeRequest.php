@@ -59,6 +59,9 @@ class AuthorizeRequest extends AbstractRequest
             $data['pmt_numb']          = $card->getNumber();
             $data['pmt_key']           = $card->getCvv();
             $data['pmt_expiry']        = $card->getExpiryDate('mY');
+
+            // to check if card is 3DS enrolled
+            $data['request_enrollment'] = 1;
         }
 
         return $data;

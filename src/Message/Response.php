@@ -3,6 +3,7 @@
 namespace Omnipay\InovioPay\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
+use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
@@ -11,7 +12,7 @@ use Omnipay\Common\Message\RequestInterface;
  * @date      3/5/18
  * @author    markbonnievestil
  */
-class Response extends AbstractResponse
+class Response extends AbstractResponse implements RedirectResponseInterface
 {
     /**
      * @var int
@@ -103,5 +104,39 @@ class Response extends AbstractResponse
     public function getCardReference()
     {
         return !empty($this->data['PMT_ID']) ? $this->data['PMT_ID'] : null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRedirect()
+    {
+        return $this->getRedirectUrl() !== null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRedirectUrl()
+    {
+        return !empty($this->data['PROC_REDIRECT_URL']) ? $this->data['PROC_REDIRECT_URL'] : null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRedirectMethod()
+    {
+        return 'POST';
+    }
+
+    /**
+     * @return array|mixed
+     */
+    public function getRedirectData()
+    {
+        if ($this->isRedirect()) {
+            return $this->data;
+        }
     }
 }
