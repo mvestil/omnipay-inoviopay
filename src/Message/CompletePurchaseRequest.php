@@ -29,38 +29,4 @@ class CompletePurchaseRequest extends AuthorizeRequest
 
         return $data;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getP3dsTransId()
-    {
-        return $this->getParameter('p3dsTransId');
-    }
-
-    /**
-     * @param $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setP3dsTransId($value)
-    {
-        return $this->setParameter('p3dsTransId', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPares()
-    {
-        return $this->getParameter('pares');
-    }
-
-    /**
-     * @param $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setPares($value)
-    {
-        return $this->setParameter('pares', $value);
-    }
 }

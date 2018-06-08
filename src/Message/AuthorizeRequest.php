@@ -14,6 +14,40 @@ namespace Omnipay\InovioPay\Message;
 class AuthorizeRequest extends AbstractRequest
 {
     /**
+     * @return mixed
+     */
+    public function getP3dsTransId()
+    {
+        return $this->getParameter('p3dsTransId');
+    }
+
+    /**
+     * @param $value
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setP3dsTransId($value)
+    {
+        return $this->setParameter('p3dsTransId', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPares()
+    {
+        return $this->getParameter('pares');
+    }
+
+    /**
+     * @param $value
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setPares($value)
+    {
+        return $this->setParameter('pares', $value);
+    }
+
+    /**
      * TODO : Support for multiple products. As of the moment, all payments are assumed to have one product id assigned to li_prod_id_1 param
      *
      * @return array
@@ -60,8 +94,12 @@ class AuthorizeRequest extends AbstractRequest
             $data['pmt_key']           = $card->getCvv();
             $data['pmt_expiry']        = $card->getExpiryDate('mY');
 
-            // to check if card is 3DS enrolled
-            $data['request_enrollment'] = 1;
+            // if 3DS the fields are empty, meaning this is just to check if card is 3DS enrolled
+            // if not empty, we should not send this parameter. Refer to CompletePurchaseRequest class
+            if (!$this->getP3dsTransId() && !$this->getPares()) {
+                // to check if card is 3DS enrolled
+                $data['request_enrollment'] = 1;
+            }
         }
 
         return $data;
