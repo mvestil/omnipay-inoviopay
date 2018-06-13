@@ -10,7 +10,23 @@ namespace Omnipay\InovioPay\Message;
  * @copyright Copyright (c) Infostream Group
  */
 
-class CompletePurchaseRequest extends AbstractRequest
+class CompletePurchaseRequest extends AuthorizeRequest
 {
-    // TODO : To be supported once InovioPay's 3DS server side implementation is completed
+    /**
+     * @return array
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
+     */
+    public function getData()
+    {
+        $this->validate('p3dsTransId', 'pares');
+
+        $data                   = parent::getData();
+        $data['request_action'] = 'CCAUTHCAP';
+        $data['p3ds_transid']   = $this->getP3dsTransId();
+        $data['request_pares']  = $this->getPares();
+
+        //\Log::info('data 3ds', [$data]);
+
+        return $data;
+    }
 }

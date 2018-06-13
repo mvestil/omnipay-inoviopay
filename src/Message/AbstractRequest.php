@@ -23,7 +23,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * @var float
      */
-    protected $apiVersion = 3.9;
+    protected $apiVersion = 4.0;
 
     /**
      * @return string
