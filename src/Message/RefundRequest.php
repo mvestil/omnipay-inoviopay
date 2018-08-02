@@ -73,7 +73,7 @@ namespace Omnipay\InovioPay\Message;
  * @date      3/5/18
  * @author    markbonnievestil
  */
-class RefundRequest extends AbstractRequest
+class RefundRequest extends VoidRequest
 {
     /**
      * @return array
@@ -81,13 +81,13 @@ class RefundRequest extends AbstractRequest
      */
     public function getData()
     {
+        // we are intentionally using VoidRequest's CCREVERSE & credit_on_fail=1 instead of CCCREDIT.
+        // CCREVERSE will void the payment, and if with credit_on_fail=1, it will refund the payment if void fails due to payment already settled
         $data = parent::getData();
 
-        $this->validate('transactionReference', 'amount');
+        $this->validate('amount');
 
-        $data['request_action']    = 'CCCREDIT';
-        $data['request_ref_po_id'] = $this->getTransactionReference();
-        $data['li_value_1']        = $this->getAmount();
+        $data['li_value_1'] = $this->getAmount();
 
         return $data;
     }
