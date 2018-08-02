@@ -36,7 +36,7 @@ The following transactions are provided by this package via the REST API:
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.  There are also examples in the class API documentation.
 
-### Quirks
+## Quirks
 
 Card and Token payment is supported. 
 In order to create a token payment, customer id (cust_id) and payment id (pmt_id) must be passed.
@@ -47,18 +47,18 @@ This package currently supports only single item purchase and multiple items wil
 For this package to work, you must pass the API credentials as part of the request body including the Product Id (li_prod_id_1) which can be created
 in InovioPay portal by creating product with type "Variable Price Product"
 
-### Test modes
+## Test modes
 
 The API has only one endpoint which is https://api.inoviopay.com/payment/pmt_service.cfm
 
-### Authentication
+## Authentication
 
 To call InovioPay Payments API, reqUsername, reqPassword, siteId, merchAcctId must be passed.
 This can be seen in InovioPay admin portal.
 
 ## Unit Testing
 
-Tests are not yet included in this package
+Tests are not yet included
 
 ## Support
 
