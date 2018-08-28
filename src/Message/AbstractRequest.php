@@ -286,6 +286,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             'merch_acct_id'           => $this->getMerchAcctId(),
             'request_response_format' => $this->getRequestResponseFormat() ? $this->getRequestResponseFormat() : 'json',
             'request_api_version'     => $this->getApiVersion(),
+            'xtl_ip'                  => $this->getClientIp(),
         );
 
         return $data;

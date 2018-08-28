@@ -48,6 +48,23 @@ class AuthorizeRequest extends AbstractRequest
     }
 
     /**
+     * @return mixed
+     */
+    public function getIsAutoRebill()
+    {
+        return $this->getParameter('isAutoRebill');
+    }
+
+    /**
+     * @param $value
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setIsAutoRebill($value)
+    {
+        return $this->setParameter('isAutoRebill', $value);
+    }
+
+    /**
      * TODO : Support for multiple products. As of the moment, all payments are assumed to have one product id assigned to li_prod_id_1 param
      *
      * @return array
@@ -78,6 +95,13 @@ class AuthorizeRequest extends AbstractRequest
 
             $data['pmt_id']  = $this->getCardReference();
             $data['cust_id'] = $this->getCustomerReference();
+
+            if ($this->getIsAutoRebill()) {
+                $data['request_rebill'] = 1;
+
+                // as per Inovio, we don't have to send IP for auto-rebills
+                unset($data['xtl_ip']);
+            }
         } else {
             $this->validate('card');
             $card = $this->getCard();
