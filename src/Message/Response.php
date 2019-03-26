@@ -48,7 +48,8 @@ class Response extends AbstractResponse implements RedirectResponseInterface
     }
 
     /**
-     * InovioPay's API does not return standard codes in a single place so we use the TRANS_STATUS_NAME as the code
+     * InovioPay's API does not return standard codes in a single place so we use the TRANS_STATUS_NAME as
+     * the code
      *
      * @return null|string
      */
@@ -62,7 +63,11 @@ class Response extends AbstractResponse implements RedirectResponseInterface
      */
     public function getMessage()
     {
-        if (!empty($this->data['SERVICE_ADVICE']) && !empty($this->data['PROCESSOR_ADVICE'])) {
+        if (!empty($this->data['SERVICE_ADVICE'])
+            && !empty($this->data['PROCESSOR_ADVICE'])
+            && trim($this->data['SERVICE_ADVICE'])
+            && trim($this->data['PROCESSOR_ADVICE'])
+        ) {
             return trim($this->data['SERVICE_ADVICE']) . ' (' . trim($this->data['PROCESSOR_ADVICE']) . ')';
         }
 
