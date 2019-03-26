@@ -62,6 +62,10 @@ class Response extends AbstractResponse implements RedirectResponseInterface
      */
     public function getMessage()
     {
+        if (!empty($this->data['SERVICE_ADVICE']) && !empty($this->data['PROCESSOR_ADVICE'])) {
+            return trim($this->data['SERVICE_ADVICE']) . '(' . trim($this->data['PROCESSOR_ADVICE']) . ')';
+        }
+
         // InovioPay returns advices with empty spaces, so use trim()
         if (!empty($this->data['SERVICE_ADVICE']) && trim($this->data['SERVICE_ADVICE'])) {
             return $this->data['SERVICE_ADVICE'];
