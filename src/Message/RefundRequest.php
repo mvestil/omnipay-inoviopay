@@ -81,6 +81,8 @@ class RefundRequest extends AbstractRequest
      */
     public function getData()
     {
+        $data = parent::getData();
+
         $this->validate('amount');
 
         $data['request_action']    = 'CCCREDIT';
