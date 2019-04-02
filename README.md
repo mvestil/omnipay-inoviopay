@@ -14,7 +14,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "mvestil/omnipay-inoviopay": "dev-master"
+        "mvestil/omnipay-inoviopay": "^1.0"
     }
 }
 ```
