@@ -2,7 +2,7 @@
 Omnipay driver for InovioPay Gateway
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements PaymentWall support for Omnipay.
+processing library for PHP 5.3+.
 
 [InovioPay](https://www.inoviopay.com/) Inovio is the revolutionary new payments gateway with seamless integration and global scalability that continuously evolves with the industry.
 

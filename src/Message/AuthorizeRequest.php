@@ -117,16 +117,10 @@ class AuthorizeRequest extends AbstractRequest
             $data['pmt_key']           = $card->getCvv();
             $data['pmt_expiry']        = $card->getExpiryDate('mY');
 
-            // if 3DS the fields are empty, meaning this is just to check if card is 3DS enrolled
-            // if not empty, we should not send this parameter. Refer to CompletePurchaseRequest class
-            if (!$this->getP3dsTransId() && !$this->getPares()) {
-                // to check if card is 3DS enrolled
-                $data['request_enrollment'] = 1;
-            }
+            // by default, check if card is 3DS enrolled
+            $data['request_enrollment'] = 1;
         }
 
         return $data;
     }
-
-    // TODO : Support for multiple product items
 }

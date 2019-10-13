@@ -20,12 +20,11 @@ class CompletePurchaseRequest extends AuthorizeRequest
     {
         $this->validate('p3dsTransId', 'pares');
 
-        $data                   = parent::getData();
-        $data['request_action'] = 'CCAUTHCAP';
-        $data['p3ds_transid']   = $this->getP3dsTransId();
-        $data['request_pares']  = $this->getPares();
-
-        //\Log::info('data 3ds', [$data]);
+        $data                       = parent::getData();
+        $data['request_action']     = 'CCAUTHCAP';
+        $data['p3ds_transid']       = $this->getP3dsTransId();
+        $data['request_pares']      = $this->getPares();
+        $data['request_enrollment'] = 0;
 
         return $data;
     }
