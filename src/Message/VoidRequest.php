@@ -86,7 +86,7 @@ class VoidRequest extends AbstractRequest
 
         $data['request_action']    = 'CCREVERSE';
         $data['request_ref_po_id'] = $this->getTransactionReference();
-        //$data['credit_on_fail']    = 1;
+        $data['credit_on_fail']    = 1;
 
         return $data;
     }
